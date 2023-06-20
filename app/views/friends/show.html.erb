@@ -1,0 +1,11 @@
+<%= link_to "Back to friends", friends_path, class:"btn btn-secondary btn-sm" %>
+<br/>
+<br/>
+<%= render @friend %>
+<br>
+<div>
+  <%= link_to "Edit this friend", edit_friend_path(@friend), class:"btn btn-warning" %>
+  <br/>
+  <br/>
+  <%= button_to "Destroy this friend", @friend, method: :delete, class:"btn btn-danger" %>
+</div>
