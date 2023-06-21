@@ -1,5 +1,9 @@
-  <%= link_to "Back to friends", friends_path, class:"btn btn-secondary btn-sm" %>
+  <%= link_to "Back", friends_path, class:"btn btn-secondary btn-sm" %>
 <br>
 <br>
-<h1>Add New friend</h1>
-<%= render "form", friend: @friend %>
+<div class="card border-secondary mb-3" style="max-width: 25rem; margin-left: auto; margin-right: auto;">
+  <h5 class="card-header text-center">ADD NEW FRIEND</h5>
+  <div class="card-body">
+    <%= render "form", friend: @friend %>
+  </div>
+</div>
