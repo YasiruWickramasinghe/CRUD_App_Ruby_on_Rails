@@ -1,4 +1,4 @@
-<%= link_to "Back", friends_path, class:"btn btn-secondary btn-sm" %>
+<%= link_to "BACK", friends_path, class:"btn btn-outline-secondary btn-sm" %>
 <br/>
 <br/>
 <div style="max-width: 25rem; margin-left: auto; margin-right: auto;">
@@ -6,8 +6,8 @@
   <br>
   <div style="display: flex; justify-content: space-between;">
     <% if @friend.user_id == current_user.id %>
-      <div> <%= link_to "Update", edit_friend_path(@friend), class:"btn btn-warning", style: "width: 10rem;" %> </div>
-      <div><%= button_to "Delete", @friend, method: :delete, class:"btn btn-danger", style: "width: 10rem;" %></div>
+      <div> <%= link_to "UPDATE", edit_friend_path(@friend), class:"btn btn-outline-warning", style: "width: 10rem;" %> </div>
+      <div><%= button_to "DELETE", @friend, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-danger", style: "width: 10rem;" %></div>
     <% end %>
   </div>
 </div>

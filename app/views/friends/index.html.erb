@@ -1,38 +1,40 @@
-<div style="display: flex">
-  <h1>FRIEND LIST</h1>
-  <div style="margin-left: 60%"><%= link_to "ADD FRIEND", new_friend_path , class:"btn btn-success" %></div>
-</div>
-<table class="table table-striped table-hover table-bordered">
-  <thead class="table-dark">
-    <tr>
-      <th scope="col">First name</th>
-      <th scope="col">Last name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Twitter</th>
-      <th scope="col">User Id</th>
-      <th scope="col" colspan="3">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @friends.each do |friend| %>
+<% if user_signed_in? %>
+  <div style="display: flex; justify-content: space-between;">
+    <h1>FRIEND LIST</h1>
+    <div style="align-item: left"><%= link_to "ADD FRIEND", new_friend_path , class:"btn btn-success" %></div>
+  </div>
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
       <tr>
-        <td><%= friend.first_name %></td>
-        <td><%= friend.last_name %></td>
-        <td><%= friend.email %></td>
-        <td><%= friend.phone %></td>
-        <td><%= friend.twitter %></td>
-        <td><%= friend.user_id %></td>
-        <td><%= link_to "VIEW", friend, class:"btn btn-primary btn-sm" %></td>
-        <% if friend.user_id == current_user.id %>
-          <td><%= link_to "UPDATE", edit_friend_path(friend), class: "btn btn-warning btn-sm" %></td>
-          <td><%= link_to "DELETE", friend, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
-        <% else %>
-          <td><%= link_to "UPDATE", edit_friend_path(friend), class: "btn btn-warning btn-sm", disabled: true, style: "opacity: 0.6; pointer-events: none; cursor: not-allowed; font-size: 0.75rem;" %></td>
-          <td><%= link_to "DELETE", friend, method: :delete, class: "btn btn-danger btn-sm", disabled: true, style: "opacity: 0.6; pointer-events: none; cursor: not-allowed; font-size: 0.75rem;" %></td>
-        <% end %>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Twitter</th>
+        <th scope="col" colspan="3">Action</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
+    </thead>
+    <tbody>
+      <% @friends.each do |friend| %>
+        <tr>
+          <td>
+            <%= link_to friend.first_name + ' ' + friend.last_name, friend, style: "text-decoration: none; color: inherit;" %>
+          </td>
+          <td><%= friend.email %></td>
+          <td><%= friend.phone %></td>
+          <td><%= friend.twitter %></td>
+          <td><%= link_to "VIEW", friend, class:"btn btn-outline-primary btn-sm" %></td>
+          <% if friend.user_id == current_user.id %>
+            <td><%= link_to "UPDATE", edit_friend_path(friend), class: "btn btn-outline-warning btn-sm" %></td>
+            <td><%= link_to "DELETE", friend,  data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-outline-danger btn-sm" %></td>
+          <% else %>
+            <td><%= link_to "UPDATE", edit_friend_path(friend), class: "btn btn-outline-warning btn-sm", disabled: true, style: " pointer-events: none; cursor: not-allowed; font-size: 0.75rem;" %></td>
+            <td><%= link_to "DELETE", friend, method: :delete, class: "btn btn-outline-danger btn-sm", disabled: true, style: " pointer-events: none; cursor: not-allowed; font-size: 0.75rem;" %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+<% else %>
+  <h1>Hello World!</h1>
+<% end %>

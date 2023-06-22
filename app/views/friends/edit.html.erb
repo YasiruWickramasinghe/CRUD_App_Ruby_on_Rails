@@ -1,8 +1,12 @@
-<%= link_to "Back", friends_path, class:"btn btn-secondary btn-sm"%>
+<%= link_to "BACK", friends_path, class:"btn btn-outline-secondary btn-sm"%>
 <br/>
 <br>
 <div class="card border-secondary mb-3" style="max-width: 25rem; margin-left: auto; margin-right: auto;">
-  <h5 class="card-header text-center">EDIT FRIEND <%= link_to "View", @friend, class:"btn btn-primary btn-sm" %></h5>
+  <h5 class="card-header text-center" style="display: flex; justify-content: space-between;">EDIT FRIEND 
+    <div style="align-item: right">
+      <%= link_to "VIEW", @friend, class:"btn btn-outline-primary btn-sm" %>
+    </div>
+  </h5>
   <div class="card-body">
     <%= render "form", friend: @friend %>
   </div>
