@@ -4,9 +4,18 @@ class FriendsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /friends or /friends.json
+  # def index
+  #   @friends = Friend.all
+  # end
+
   def index
-    @friends = Friend.all
+    if params[:search]
+      @friends = Friend.where("first_name LIKE ?", "%#{params[:search]}%")
+    else
+      @friends = Friend.all
+    end
   end
+  
 
   # GET /friends/1 or /friends/1.json
   def show
@@ -73,7 +82,11 @@ class FriendsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
+    # def friend_params
+    #   params.require(:friend).permit(:first_name, :last_name, :email, :phone, :twitter, :user_id)
+    # end
+
     def friend_params
-      params.require(:friend).permit(:first_name, :last_name, :email, :phone, :twitter, :user_id)
+      params.require(:friend).permit(:first_name, :last_name, :email, :phone, :twitter, :user_id, :search)
     end
 end
