@@ -4,8 +4,10 @@
 <div style="max-width: 25rem; margin-left: auto; margin-right: auto;">
   <%= render @friend %>
   <br>
-  <div style="display: flex">
-    <div style="margin-right: 1rem"> <%= link_to "Update", edit_friend_path(@friend), class:"btn btn-warning" %> </div>
-    <div><%= button_to "Delete", @friend, method: :delete, class:"btn btn-danger" %></div>
+  <div style="display: flex; justify-content: space-between;">
+    <% if @friend.user_id == current_user.id %>
+      <div> <%= link_to "Update", edit_friend_path(@friend), class:"btn btn-warning", style: "width: 10rem;" %> </div>
+      <div><%= button_to "Delete", @friend, method: :delete, class:"btn btn-danger", style: "width: 10rem;" %></div>
+    <% end %>
   </div>
 </div>
