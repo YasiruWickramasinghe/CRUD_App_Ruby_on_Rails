@@ -7,17 +7,17 @@
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Enter Email" %>
         <% if resource.errors[:email].any? %>
           <div class="error-message" style="color: red; font-size: 0.8rem;">
-            <%= resource.errors[:email].second %>
+            Email <%= resource.errors[:email].first %>
           </div>
         <% end %>
       </div>
       <div class="field form-group">
         <%= f.label :password %>
-        <div style="color: grey; font-size: 0.8rem;">(must be at least 6 characters long and include at least one symbol, one number, and one uppercase letter)</div>
+        <div style="color: grey; font-size: 0.8rem;">(minimum is 6 characters)</div>
         <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Enter Password" %>
         <% if resource.errors[:password].any? %>
           <div class="error-message" style="color: red; font-size: 0.8rem;">
-            <%= resource.errors[:password].second %>
+            Password <%= resource.errors[:password].first %>
           </div>
         <% end %>
       </div>
@@ -26,11 +26,7 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm Password" %>
         <% if resource.errors[:password_confirmation].any? %>
           <div class="error-message" style="color: red; font-size: 0.8rem;">
-            <%= resource.errors[:password_confirmation].second %>
-          </div>
-        <% elsif resource.errors[:password].any? %>
-          <div class="error-message" style="color: red; font-size: 0.8rem;">
-            Password and confirmation must match.
+            <%= resource.errors[:password_confirmation].first %>
           </div>
         <% end %>
       </div>
